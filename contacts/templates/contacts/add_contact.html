@@ -1,0 +1,36 @@
+{% extends "contacts/base.html" %}
+
+{% block title %}Add Contact - Contact Management System{% endblock %}
+
+{% block content %}
+    <h2>Add New Contact</h2>
+    
+    {% if messages %}
+        <div class="alert alert-dismissible fade show" role="alert">
+            {% for message in messages %}
+                <div>{{ message }}</div>
+            {% endfor %}
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+    {% endif %}
+    
+    <form method="POST" class="mt-4">
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name">Name:</label>
+            <input type="text" class="form-control" id="name" name="name" required>
+        </div>
+        <div class="form-group">
+            <label for="phone">Phone:</label>
+            <input type="text" class="form-control" id="phone" name="phone" required>
+        </div>
+        <div class="form-group">
+            <label for="email">Email:</label>
+            <input type="email" class="form-control" id="email" name="email" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Add Contact</button>
+        <a href="{% url 'home' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

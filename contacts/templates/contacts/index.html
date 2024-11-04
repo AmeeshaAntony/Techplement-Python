@@ -1,0 +1,12 @@
+{% extends "contacts/base.html" %}
+
+{% block title %}Home - Contact Management System{% endblock %}
+
+{% block content %}
+    <h2 class="text-center">Welcome to the Contact Management System</h2>
+    <p class="text-center">Manage your contacts efficiently.</p>
+    <div class="text-center">
+        <a href="{% url 'add_contact' %}" class="btn btn-primary btn-lg">Add New Contact</a>
+        <a href="{% url 'search_contact' %}" class="btn btn-secondary btn-lg">Search Contacts</a>
+    </div>
+{% endblock %}

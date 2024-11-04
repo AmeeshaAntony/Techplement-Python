@@ -1,0 +1,30 @@
+{% extends "contacts/base.html" %}
+
+{% block title %}Search Contacts - Contact Management System{% endblock %}
+
+{% block content %}
+    <h2>Search Contacts</h2>
+    <form method="get" action="{% url 'search_contact' %}" class="form-inline mb-4">
+        <input type="text" class="form-control mr-2" name="q" placeholder="Search by name" value="{{ query }}">
+        <button type="submit" class="btn btn-outline-primary">Search</button>
+    </form>
+
+    {% if results %}
+        <h3>Search Results:</h3>
+        <ul class="list-group">
+            {% for contact in results %}
+                <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{ contact.name }} - {{ contact.phone }}
+                    <div>
+                        <a href="{% url 'update_contact' contact.id %}" class="btn btn-sm btn-warning">Edit</a>
+                        <a href="{% url 'delete_contact' contact.id %}" class="btn btn-sm btn-danger">Delete</a>
+                    </div>
+                </li>
+            {% endfor %}
+        </ul>
+    {% elif query %}
+        <div class="alert alert-warning" role="alert">
+            No results found for "{{ query }}".
+        </div>
+    {% endif %}
+{% endblock %}
